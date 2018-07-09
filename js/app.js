@@ -206,21 +206,18 @@ function init() {
 /* 
 * MAKE A MODAL
 */
-var modal = document.getElementById("myModal"); // Get the modal
-var btn = document.getElementById("myBtn"); // Get the button that opens the modal
+var modal = document.getElementById("modal-window"); // Get the modal
+// var btn = document.getElementById("myBtn"); // Get the button that opens the modal
 var span = document.getElementsByClassName("close")[0]; // Get the <span> element that closes the modal
 var modalTime = document.getElementById("time-played");
 var modalMoves = document.getElementById("num-moves");
 var modalStars = document.getElementById("star-rate"); 
 var playAgainBtn = document.getElementById("play-again"); 
 
-// When the user clicks on the button, open the modal 
-btn.onclick = function() {
-    modal.style.display = "block";
-    modalTime.textContent = timer.textContent; 
-    modalMoves.textContent = counter; 
-    modalStars.textContent = starRating(); 
-}
+// When the user clicks on the button, open the modal, for editing purpose
+// btn.onclick = function() {
+//     allCardMatch(); 
+// }
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
