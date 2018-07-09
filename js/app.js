@@ -80,17 +80,22 @@ function cardNotMatch() {
 function numPairs() {
     // track the number of card pairs matched
     matchFound += 1; 
-    console.log(counter); 
 }
 
 function allCardMatch() {
     // if all cards have matched, display a message with the final score 
     var timePlayed = timer.textContent; 
+    // console printing 
     console.log("Congratulations! You Won!"); 
     console.log("After " + timePlayed + " With " + counter + " Moves and " + starRating() + " Stars" );
     console.log("Woooooo!");
-}
 
+    // make the modal popup 
+    modal.style.display = "block";
+    modalTime.textContent = timePlayed; 
+    modalMoves.textContent = counter; 
+    modalStars.textContent = starRating(); 
+}
 
 function starRating() {
     // star rating that reflects the player's performance
@@ -108,7 +113,6 @@ function starRating() {
     }
     return starsCount; 
 }
-
 
 function displayMoves() {
     // display the current number of moves a user has made
@@ -198,7 +202,47 @@ function init() {
     resetOpenCards(); 
 }
 
-// ADD EVENT LISTENER FOR EACH CARD CLICKED
+
+/* 
+* MAKE A MODAL
+*/
+var modal = document.getElementById("myModal"); // Get the modal
+var btn = document.getElementById("myBtn"); // Get the button that opens the modal
+var span = document.getElementsByClassName("close")[0]; // Get the <span> element that closes the modal
+var modalTime = document.getElementById("time-played");
+var modalMoves = document.getElementById("num-moves");
+var modalStars = document.getElementById("star-rate"); 
+var playAgainBtn = document.getElementById("play-again"); 
+
+// When the user clicks on the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+    modalTime.textContent = timer.textContent; 
+    modalMoves.textContent = counter; 
+    modalStars.textContent = starRating(); 
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+// Restart game when user clicks on Play Again button
+playAgainBtn.addEventListener("click", function() {
+    modal.style.display = "none";
+    init(); 
+})
+
+/*
+* ADD EVENT LISTENER FOR EACH CARD CLICKED
+*/ 
 for (var i=0; i<cards.length; i++) {
     cards[i].addEventListener("click", function() { 
         // start timer 
@@ -234,40 +278,16 @@ for (var i=0; i<cards.length; i++) {
 }
 
 
-// RESTART BUTTON
+/*
+* RESTART BUTTON
+*/
 restartBtn.addEventListener("click", function() {
     init(); 
 })
 
-// WHEN BROWSER OPEN
+
+/*
+* WHEN BROWSER OPEN
+*/ 
 init(); 
 
-
-// MODAL
-var modal = document.getElementById("myModal"); // Get the modal
-var btn = document.getElementById("myBtn"); // Get the button that opens the modal
-var span = document.getElementsByClassName("close")[0]; // Get the <span> element that closes the modal
-var playAgainBtn = document.getElementById("play-again"); 
-var modalTime = document.getElementById("time-played");
-var modalMoves = document.getElementById("num-moves");
-var modalStars = document.getElementById("star-rate"); 
-
-// When the user clicks on the button, open the modal 
-btn.onclick = function() {
-    modal.style.display = "block";
-    modalTime.textContent = timer.textContent; 
-    modalMoves.textContent = counter; 
-    modalStars.textContent = starRating(); 
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
