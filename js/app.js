@@ -137,10 +137,11 @@ function pad(val) {
 
 var intervalID;
 var sec = 0;
+
 function startTime() {
     intervalID = setInterval(function() {
-        document.getElementById("seconds").innerHTML = pad(++sec%60); //display sec%60, incremented by every 1s
-        document.getElementById("minutes").innerHTML = pad(parseInt(sec/60, 10)); //convert secs to mins
+        document.getElementById("second").textContent = pad(++sec%60); //display sec%60, incremented by every 1s
+        document.getElementById("minute").textContent = pad(parseInt(sec/60, 10)); //convert secs to mins
     }, 1000);
 }
 
@@ -148,6 +149,13 @@ function restartTime() {
     sec = 0;
     clearInterval(intervalID); 
     startTime(); 
+}
+
+function clearTime() {
+    document.getElementById("second").textContent = "00";
+    document.getElementById("minute").textContent = "00"; 
+    sec = 0;
+    clearInterval(intervalID);
 }
 
 function restartMoves() {
@@ -181,21 +189,24 @@ function restartBoard() {
     }
 }
 
-function gameStart() {
+function init() {
+    //Initial game board
     restartMoves(); 
     restartStars(); 
     restartBoard(); 
-    restartTime(); 
+    clearTime(); 
     matchFound = 0; 
 }
 
 //ADD EVENT LISTENER FOR EACH CARD CLICKED
-
 for (var i=0; i<cards.length; i++) {
     cards[i].addEventListener("click", function() { 
         displayCardSymbol(this); 
         addOpenCard(this);
         counter += 1; 
+        if (counter === 1) {
+           restartTime(); 
+        }
         starRating(); 
         displayMoves(); 
         //if openCards already has a DIFFERENT card, check to see if the two cards match
@@ -214,12 +225,12 @@ for (var i=0; i<cards.length; i++) {
     })
 }
 
+
 //RESTART BUTTON
 var restartBtn = document.querySelector(".restart"); 
 restartBtn.addEventListener("click", function() {
-    gameStart(); 
-    restartTime(); 
+    init(); 
 })
 
 //WHEN BROWSER OPEN
-gameStart(); 
+init(); 
