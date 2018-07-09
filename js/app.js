@@ -5,6 +5,7 @@ var stars = document.querySelectorAll(".fa-star");
 var restartBtn = document.querySelector(".restart"); 
 var minute = document.getElementById("minute");
 var second = document.getElementById("second");
+var timer = document.getElementById("timer"); 
 var starsCount = 3; 
 var counter = 0; 
 var matchFound = 0; 
@@ -87,8 +88,9 @@ function numPairs() {
 function allCardMatch() {
     // if all cards have matched, display a message with the final score 
     // modal.style.display = "block"; 
+    var timePlayed = timer.textContent; 
     console.log("Congratulations! You Won!"); 
-    console.log("With " + counter + " Moves and " + starRating() + " Stars" );
+    console.log("After " + timePlayed + " With " + counter + " Moves and " + starRating() + " Stars" );
     console.log("Woooooo!");
 }
 
