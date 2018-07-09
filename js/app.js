@@ -3,6 +3,8 @@ var deck = document.querySelector(".deck");
 var moves = document.querySelector(".moves"); 
 var stars = document.querySelectorAll(".fa-star");
 var restartBtn = document.querySelector(".restart"); 
+var minute = document.getElementById("minute");
+var second = document.getElementById("second");
 var starsCount = 3; 
 var counter = 0; 
 var matchFound = 0; 
@@ -85,7 +87,7 @@ function numPairs() {
 function allCardMatch() {
     // if all cards have matched, display a message with the final score 
     // modal.style.display = "block"; 
-    console.log("Congratulations! You won!"); 
+    console.log("Congratulations! You Won!"); 
     console.log("With " + counter + " Moves and " + starRating() + " Stars" );
     console.log("Woooooo!");
 }
@@ -93,10 +95,10 @@ function allCardMatch() {
 
 function starRating() {
     // star rating that reflects the player's performance
-    if (counter <= 20) {
+    if (counter <= 30) {
         starsCount = 3;
     }
-    else if (counter > 20 && counter <= 40) {
+    else if (counter > 30 && counter <= 40) {
         starsCount = 2; 
         stars[2].classList.replace("fa-star", "fa-star-o"); 
     }
@@ -116,26 +118,29 @@ function displayMoves() {
 
 // Countup timer from stackoverflow: https://stackoverflow.com/questions/5517597/plain-count-up-timer-in-javascript
 function pad(val) { 
-    //conditional (ternary) operator 
-    return val > 9 ? val : "0" + val; //condition ? expr1 : expr2 
+    // conditional (ternary) operator 
+    return val > 9 ? val : "0" + val; // condition ? expr1 : expr2 
 }
 
 function timing() {
     // start timing 
-    sec = 0;
-    clearInterval(intervalID); // clear the previous timer before running a new one
     intervalID = setInterval(function() {
-        document.getElementById("second").textContent = pad(++sec%60); //display sec%60, incremented by every 1s
-        document.getElementById("minute").textContent = pad(parseInt(sec/60, 10)); //convert secs to mins
+        second.textContent = pad(++sec%60); //display sec%60, incremented by every 1s
+        minute.textContent = pad(parseInt(sec/60, 10)); //convert secs to mins
     }, 1000);
+}
+
+function stopTiming() {
+    // stop timer
+    clearInterval(intervalID);
 }
 
 function resetTimer() {
     // reset Timer to default 00:00 and stand still
     sec = 0;
-    document.getElementById("second").textContent = "00";
-    document.getElementById("minute").textContent = "00"; 
-    clearInterval(intervalID);
+    second.textContent = "00";
+    minute.textContent = "00"; 
+    clearInterval(intervalID); // clear the previous timer before running a new one
 }
 
 function resetMoves() {
@@ -175,10 +180,12 @@ function resetBoard() {
 }
 
 function resetMatch() {
+    // reset the number of match found to 0 
     matchFound = 0;
 }
 
 function resetOpenCards() {
+    // empty openCards array 
     openCards.length = 0; 
 }
 
@@ -222,6 +229,7 @@ for (var i=0; i<cards.length; i++) {
         // check if the player has found all the pairs
         if (matchFound === 8) {
             allCardMatch(); 
+            stopTiming(); 
         }
     })
 }
