@@ -15,15 +15,15 @@
 
 ## Incorrect Guess
 <p align="center">
-  <img src="https://github.com/loanttran/UFEN-Project2-Memory-Game/blob/master/img/2.png">
+  <img src="https://github.com/loanttran/UFEN-Project2-Memory-Game/blob/master/img/2.png" width=60%>
 </p>
 
 ## Correct Guess
 <p align="center">
-  <img src="https://github.com/loanttran/UFEN-Project2-Memory-Game/blob/master/img/1.png">
+  <img src="https://github.com/loanttran/UFEN-Project2-Memory-Game/blob/master/img/1.png" width=60%>
 </p>
 
 ## Winning the Game
 <p align="center">
-  <img src="https://github.com/loanttran/UFEN-Project2-Memory-Game/blob/master/img/3.png">
+  <img src="https://github.com/loanttran/UFEN-Project2-Memory-Game/blob/master/img/3.png" width=60%>
 </p>
