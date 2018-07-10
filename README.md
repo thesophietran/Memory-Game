@@ -1,9 +1,11 @@
 # Memory Game Project
 
-## How The Game Works
-<p> The game deck has of sixteen "cards" arranged in a grid. There are eight different pairs of cards, each with different symbols on one side. The cards are arranged randomly on the grid with the symbol face down. The gameplay rules are very simple: flip over two hidden cards at a time to locate the ones that match!</p>
+The project is done with HTML, CSS, and JavaScript. Dependencies are Bootstrap, linearicons, and Google fonts. There is no jQuery. 
 
-<p>Each turn:</p>
+## How The Game Works
+The game deck has of sixteen "cards" arranged in a grid. There are eight different pairs of cards, each with different symbols on one side. The cards are arranged randomly on the grid with the symbol face down. The gameplay rules are very simple: flip over two hidden cards at a time to locate the ones that match!
+
+Each turn:
 
 <ul>
   <li>The player flips one card over to reveal its underlying symbol.</li>
