@@ -13,12 +13,6 @@ var openCards = []; //should always have 2 cards only, for the sake of compariso
 var sec = 0;
 var intervalID;
 
-// // Display all the cards
-// for (var i=0; i<cards.length; i++) {
-//    cards[i].classList.remove("match");
-//    cards[i].classList.add("open", "show");
-// } 
-
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -207,12 +201,12 @@ function init() {
 * MAKE A MODAL
 */
 var modal = document.getElementById("modal-window"); // Get the modal
+// var btn = document.getElementById("myBtn"); // Get the button that opens the modal
 var span = document.getElementsByClassName("close")[0]; // Get the <span> element that closes the modal
 var modalTime = document.getElementById("time-played");
 var modalMoves = document.getElementById("num-moves");
 var modalStars = document.getElementById("star-rate"); 
-var playAgainBtn = document.getElementById("play-again");
-// var btn = document.getElementById("myBtn"); // Get the button that opens the modal 
+var playAgainBtn = document.getElementById("play-again"); 
 
 // When the user clicks on the button, open the modal, for editing purpose
 // btn.onclick = function() {
@@ -236,6 +230,7 @@ playAgainBtn.addEventListener("click", function() {
     modal.style.display = "none";
     init(); 
 })
+
 
 /*
 * ADD EVENT LISTENER FOR EACH CARD CLICKED
@@ -288,3 +283,8 @@ restartBtn.addEventListener("click", function() {
 */ 
 init(); 
 
+// // Display all the cards
+// for (var i=0; i<cards.length; i++) {
+//    cards[i].classList.remove("match");
+//    cards[i].classList.add("open", "show");
+// } 
