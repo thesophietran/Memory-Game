@@ -13,6 +13,8 @@
   <li>The game ends once all cards have been correctly matched.</li>
 </ul>
 
+The project is done with HTML, CSS, and JavaScript. Dependencies are Bootstrap, linearicons, and Google fonts. There is no jQuery. 
+
 ### Incorrect Guess
 <p align="center">
   <img src="https://github.com/loanttran/UFEN-Project2-Memory-Game/blob/master/img/2.png" width=50%>
