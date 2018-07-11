@@ -237,7 +237,6 @@ playAgainBtn.addEventListener("click", function() {
 /*
 * ADD EVENT LISTENER FOR EACH CARD CLICKED
 */ 
-
 for (var i=0; i<cards.length; i++) {
     cards[i].addEventListener("click", function() { 
         if (clickDisabled) {
