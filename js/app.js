@@ -41,20 +41,19 @@ function displayCardSymbol(card) {
 function addOpenCard(card) {
     // add different cards to openCards array
     if (openCards.length === 2) {
+        // if the card is different from the card already in the array
         if (openCards[0].getAttribute("id") !== card.getAttribute("id")) {
-            // if the card is different from the card already in the array
             openCards.push(card); 
         }
     } 
+    // if the array is empty
     else {
-        // if the array is empty
         openCards.push(card); 
     }
 }
 
 function cardMatch() {
     // if the cards do match, lock the cards in the open position
-    // console.log("MATCHED"); 
     openCards[1].classList.add("match");
     openCards[0].classList.add("match");   
     openCards.length = 0; // empty openCards
@@ -62,14 +61,13 @@ function cardMatch() {
 
 function cardNotMatch() {
     // if the cards do not match, remove the cards from the list and hide the card's symbol
-    // console.log("NOT MATCHED");
     openCards[1].classList.add("wrong"); // turn the wrong pair to red 
     openCards[0].classList.add("wrong"); // turn the wrong pair to red 
     setTimeout(function() {    
         openCards[1].classList.remove("open", "show", "wrong");
         openCards[0].classList.remove("open", "show", "wrong"); 
         openCards.length = 0; 
-        clickDisabled = false; 
+        clickDisabled = false; // resume all actions
     }, 450);   
 }
 
@@ -95,10 +93,10 @@ function allCardMatch() {
 
 function starRating() {
     // star rating that reflects the player's performance
-    if (counter <= 30) {
+    if (counter <= 16) {
         starsCount = 3;
     }
-    else if (counter > 30 && counter <= 40) {
+    else if (counter > 16 && counter <= 24) {
         starsCount = 2; 
         stars[2].classList.replace("fa-star", "fa-star-o"); 
     }
@@ -242,17 +240,14 @@ playAgainBtn.addEventListener("click", function() {
 
 for (var i=0; i<cards.length; i++) {
     cards[i].addEventListener("click", function() { 
-        // when clicking an already opened card, nothing should happen
         if (clickDisabled) {
             return; 
         }
 
-        if (!this.className.includes("open") && openCards.length <= 2) {
+        // add event only if the card has not been opened
+        if (!this.className.includes("open")) {
             // add different cards to openCards array
-            // flip 2 cards at maximum 
-            if (openCards.length <=2) {
-                addOpenCard(this);
-            }
+            addOpenCard(this);
 
             // count moves
             if (openCards.length === 2) {
@@ -264,6 +259,7 @@ for (var i=0; i<cards.length; i++) {
                 timing(); 
             }
 
+            // flip 2 cards at maximum 
             if (openCards.length <=2) {
                 displayCardSymbol(this);
             }
@@ -279,7 +275,7 @@ for (var i=0; i<cards.length; i++) {
                     numPairs(); 
                 }
                 else {
-                    clickDisabled = true; 
+                    clickDisabled = true; // freeze all actions
                     cardNotMatch();  
                     }
                 }
