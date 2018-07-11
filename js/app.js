@@ -289,7 +289,6 @@ for (var i=0; i<cards.length; i++) {
 } 
 
 
-
 /*
 * RESTART BUTTON
 */
