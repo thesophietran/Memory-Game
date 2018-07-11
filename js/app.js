@@ -12,6 +12,7 @@ var matchFound = 0;
 var openCards = []; //should always have 2 cards only, for the sake of comparison 
 var sec = 0;
 var intervalID;
+var clickDisabled = false; 
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -39,7 +40,7 @@ function displayCardSymbol(card) {
 
 function addOpenCard(card) {
     // add different cards to openCards array
-    if (openCards.length > 0) {
+    if (openCards.length === 2) {
         if (openCards[0].getAttribute("id") !== card.getAttribute("id")) {
             // if the card is different from the card already in the array
             openCards.push(card); 
@@ -64,10 +65,11 @@ function cardNotMatch() {
     // console.log("NOT MATCHED");
     openCards[1].classList.add("wrong"); // turn the wrong pair to red 
     openCards[0].classList.add("wrong"); // turn the wrong pair to red 
-    setTimeout(function() {      
+    setTimeout(function() {    
         openCards[1].classList.remove("open", "show", "wrong");
         openCards[0].classList.remove("open", "show", "wrong"); 
         openCards.length = 0; 
+        clickDisabled = false; 
     }, 450);   
 }
 
@@ -121,6 +123,8 @@ function pad(val) {
 
 function timing() {
     // start timing 
+    sec = 0;
+    clearInterval(intervalID);
     intervalID = setInterval(function() {
         second.textContent = pad(++sec%60); //display sec%60, incremented by every 1s
         minute.textContent = pad(parseInt(sec/60, 10)); //convert secs to mins
@@ -235,39 +239,60 @@ playAgainBtn.addEventListener("click", function() {
 /*
 * ADD EVENT LISTENER FOR EACH CARD CLICKED
 */ 
+
 for (var i=0; i<cards.length; i++) {
     cards[i].addEventListener("click", function() { 
-        // start timer 
-        counter += 1; 
-        if (counter === 1) {
-           timing(); 
-        }
-         
-        // update Star Rating and Moves, and flip cards
-        starRating(); 
-        displayMoves(); 
-        displayCardSymbol(this);
-        
-        // add different cards to openCards array
-        addOpenCard(this);
-        // check whether the two cards match
-        if (openCards.length > 1) {
-            if (openCards[1].lastElementChild.className == openCards[0].lastElementChild.className) {
-                cardMatch();
-                numPairs(); 
-            }
-            else {
-                cardNotMatch();  
-            }
+        // when clicking an already opened card, nothing should happen
+        if (clickDisabled) {
+            return; 
         }
 
-        // check if the player has found all the pairs
-        if (matchFound === 8) {
-            allCardMatch(); 
-            stopTiming(); 
-        }
-    })
-}
+        if (!this.className.includes("open") && openCards.length <= 2) {
+            // add different cards to openCards array
+            // flip 2 cards at maximum 
+            if (openCards.length <=2) {
+                addOpenCard(this);
+            }
+
+            // count moves
+            if (openCards.length === 2) {
+                counter += 1; 
+            }
+
+            // start timer 
+            if (counter === 1) {
+                timing(); 
+            }
+
+            if (openCards.length <=2) {
+                displayCardSymbol(this);
+            }
+
+            // update Star Rating and Moves
+            starRating(); 
+            displayMoves(); 
+
+            // check whether the two cards match
+            if (openCards.length > 1) {
+                if (openCards[1].lastElementChild.className == openCards[0].lastElementChild.className) {
+                    cardMatch();
+                    numPairs(); 
+                }
+                else {
+                    clickDisabled = true; 
+                    cardNotMatch();  
+                    }
+                }
+            }
+
+            // check if the player has found all the pairs
+            if (matchFound === 8) {
+                allCardMatch(); 
+                stopTiming(); 
+            }
+        })
+} 
+
 
 
 /*
