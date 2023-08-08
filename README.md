@@ -18,15 +18,15 @@ Each turn:
 
 ### Incorrect Guess
 <p align="center">
-  <img src="https://github.com/loanttran/UFEN-Project2-Memory-Game/blob/master/img/2.png" width=50%>
+  <img src="./img/2.png" width=50%>
 </p>
 
 ### Correct Guess
 <p align="center">
-  <img src="https://github.com/loanttran/UFEN-Project2-Memory-Game/blob/master/img/1.png" width=50%>
+  <img src="./img/1.png" width=50%>
 </p>
 
 ### Winning the Game
 <p align="center">
-  <img src="https://github.com/loanttran/UFEN-Project2-Memory-Game/blob/master/img/3.png" width=50%>
+  <img src="./img/3.png" width=50%>
 </p>
