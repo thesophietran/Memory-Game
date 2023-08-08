@@ -1,5 +1,5 @@
 # Memory Game Project
-Click here to play: https://thesophietran.github.io/UFEND-Project2-Memory-Game/
+Click here to play: https://thesophietran.github.io/Memory-Game/
 
 The project is done with HTML, CSS, and JavaScript. Dependencies are Bootstrap, linearicons, and Google fonts. There is no jQuery. 
 
